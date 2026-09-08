@@ -3,13 +3,16 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 
 ## 1. How to Run
 1. create a virtual env (optional but recommended)
+
     python -m venv .venv
     source .venv/bin/activate        # on Windows: .venv\Scripts\activate
 
 2. install dependencies
+
     pip install -r requirements.txt
 
 3. run the API
+
     uvicorn main:app --reload
 
     The API will be available at `http://localhost:8000`.
@@ -26,27 +29,33 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
     pytest -v
 
 ## Example requests
-1. create a job
+1. Create a job
+
     curl -X POST http://localhost:8000/jobs \
     -H "Content-Type: application/json" \
     -d '{"title": "Backend Engineer", "description": "Build APIs", "location": "Kuala Lumpur"}'
 
-2. get a single job
+2. Get a single job
+    
     curl http://localhost:8000/jobs/<job_id>
 
-3. list all jobs, optionally filtered by status
+3. List all jobs, optionally filtered by status
+    
     curl http://localhost:8000/jobs
     curl "http://localhost:8000/jobs?status=OPEN"
 
-4. apply to a job
+4. Apply to a job
+    
     curl -X POST http://localhost:8000/jobs/<job_id>/applications \
     -H "Content-Type: application/json" \
     -d '{"candidate_name": "Jane Tan", "candidate_email": "jane@example.com"}'
 
-5. list applications for a job
+5. List applications for a job
+    
     curl http://localhost:8000/jobs/<job_id>/applications
 
-6. close a job
+6. Close a job
+    
     curl -X POST http://localhost:8000/jobs/<job_id>/close
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -55,7 +64,7 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 
 The code is organised into four layers, each depending only on the layer below it (never sideways, never upward):
 
-Router (FastAPI)  ->  Service (business rules)  ->  Repository (data access)
+Router (FastAPI)  ->  Service (business rules)  ->  Repository (data access) -> Storage (in-memory / future DB)
 
 
 1. The Repository is an abstract interface (`ABC`). `InMemoryJobRepository` and `InMemoryApplicationRepository` are just one implementation. Swapping to Postgres/Mongo later means writing a new class that implements the same interface.
