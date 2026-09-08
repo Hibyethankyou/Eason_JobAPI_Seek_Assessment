@@ -4,16 +4,22 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 ## 1. How to Run
 1. create a virtual env (optional but recommended)
 
+```bash
     python -m venv .venv
     source .venv/bin/activate        # on Windows: .venv\Scripts\activate
+```
 
 2. install dependencies
 
+```bash
     pip install -r requirements.txt
+```
 
 3. run the API
 
+```bash
     uvicorn main:app --reload
+```
 
     The API will be available at `http://localhost:8000`.
     FastAPI auto-generates interactive docs at `http://localhost:8000/docs`
@@ -30,34 +36,37 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 
 ## Example requests
 1. Create a job
-
+```bash
     curl -X POST http://localhost:8000/jobs \
     -H "Content-Type: application/json" \
     -d '{"title": "Backend Engineer", "description": "Build APIs", "location": "Kuala Lumpur"}'
+```
 
 2. Get a single job
-    
+    ```bash
     curl http://localhost:8000/jobs/<job_id>
+    ```
 
 3. List all jobs, optionally filtered by status
-    
+    ```bash
     curl http://localhost:8000/jobs
     curl "http://localhost:8000/jobs?status=OPEN"
+    ```
 
 4. Apply to a job
-    
+    ```bash
     curl -X POST http://localhost:8000/jobs/<job_id>/applications \
     -H "Content-Type: application/json" \
     -d '{"candidate_name": "Jane Tan", "candidate_email": "jane@example.com"}'
-
+    ```
 5. List applications for a job
-    
+    ```bash
     curl http://localhost:8000/jobs/<job_id>/applications
-
+    ```
 6. Close a job
-    
+    ```bash
     curl -X POST http://localhost:8000/jobs/<job_id>/close
-
+```
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design Overview
