@@ -17,9 +17,9 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 
 3. run the API
 
-```bash
+    ```bash
     uvicorn main:app --reload
-```
+    ```
 
     The API will be available at `http://localhost:8000`.
     FastAPI auto-generates interactive docs at `http://localhost:8000/docs`
@@ -66,7 +66,7 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 6. Close a job
     ```bash
     curl -X POST http://localhost:8000/jobs/<job_id>/close
-```
+    ```
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design Overview
