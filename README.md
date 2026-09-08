@@ -18,7 +18,9 @@ Using Python 3.11+, FastAPI, in-memory storage (no external DB required).
 3. run the API
 
     ```bash
-    uvicorn main:app --reload
+    uvicorn app.main:app --reload
+    #or using
+    fastapi dev app/main.py
     ```
 
     The API will be available at `http://localhost:8000`.
@@ -138,10 +140,6 @@ Router (FastAPI)  ->  Service (business rules)  ->  Repository (data access) -> 
 6. Optimistic concurrency on `close_job` (e.g. version field):
     To avoid race conditions if two requests close/read concurrently.
 
-7. Integration tests:
-    Against the actual HTTP layer (via `TestClient`) in addition to service-level unit tests, 
-    to cover status codes and JSON shape end-to-end.
-
-8. Dockerfile:
+7. Dockerfile:
     For one-command local run without a manual venv setup.
 
